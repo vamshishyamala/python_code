@@ -1,0 +1,48 @@
+import random
+
+class RockPaperScissors:
+    def __init__(self):
+        self.choices = ['rock', 'paper', 'scissors']
+        self.player_score = 0
+        self.computer_score = 0
+
+    def play_game(self):
+        while True:
+            print("\nRock, Paper, Scissors")
+            print("1. Rock")
+            print("2. Paper")
+            print("3. Scissors")
+            print("4. Quit")
+
+            player_choice = input("Enter your choice (1-4): ")
+            
+            if player_choice == '4':
+                self.display_scores()
+                print("Thank you for playing!")
+                break
+            
+            if player_choice not in ['1', '2', '3']:
+                print("Invalid choice. Try again.")
+                continue
+            
+            player_choice = int(player_choice) - 1
+            computer_choice = random.randint(0, 2)
+            
+            print(f"\nYou chose {self.choices[player_choice]}")
+            print(f"Computer chose {self.choices[computer_choice]}")
+            
+            if player_choice == computer_choice:
+                print("It's a tie!")
+            elif (player_choice - computer_choice) % 3 == 1:
+                print("You win!")
+                self.player_score += 1
+            else:
+                print("Computer wins!")
+                self.computer_score += 1
+
+    def display_scores(self):
+        print(f"\nFinal Scores:\nPlayer: {self.player_score}\nComputer: {self.computer_score}")
+
+# Main program
+game = RockPaperScissors()
+game.play_game()
